@@ -1,0 +1,63 @@
+
+#spring:
+#  application:
+#    name: mail-service
+#  config:
+#    import: nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
+#  cloud:
+#    nacos:
+#      server-addr: 192.168.3.85  # nacos 地址
+#      config:
+#        file-extension: yaml
+#
+
+# Tomcat
+server:
+  port: 10010
+
+# Spring
+spring:
+  application:
+    # 应用名称
+    name: alert-service
+  profiles:
+    # 环境配置
+    active: dev
+  cloud:
+    nacos:
+      # 服务注册和配置中心地址
+      server-addr: 192.168.3.85
+      config:
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+        import: optional:nacos:${spring.application.name}.${spring.cloud.nacos.config.file-extension}
+    sentinel:
+      # 取消控制台懒加载
+      eager: true
+      transport:
+        # 控制台地址
+        dashboard: 192.168.3.85:8080
+      # nacos配置持久化
+#      datasource:
+#        ds1:
+#          nacos:
+#            server-addr: 192.168.3.85:8848
+#            dataId: sentinel-alert-service
+#            groupId: DEFAULT_GROUP
+#            data-type: json
+#            rule-type: gw-flow
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: 1557090170@qq.com
+    password: ataapwzstcshgeie
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
