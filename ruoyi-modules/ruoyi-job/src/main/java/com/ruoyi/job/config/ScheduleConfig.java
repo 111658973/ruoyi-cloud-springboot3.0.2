@@ -1,7 +1,7 @@
 //package com.ruoyi.job.config;
 //
 //import java.util.Properties;
-//import javax.sql.DataSource;
+//import jakarta.sql.DataSource;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.scheduling.quartz.SchedulerFactoryBean;
